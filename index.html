@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>MapBox</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0px;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <style>
+        #map {
+            position: fixed;
+            width: 50%;
+        }
+
+        #features {
+            width: 50%;
+            margin-left: 50%;
+            font-family: sans-serif;
+            overflow-y: scroll;
+            background-color: #919976;
+        }
+
+        section {
+            padding: 25px 50px;
+            line-height: 25px;
+            border-bottom: 3px solid #a8a8a8;
+            opacity: 0.25;
+        }
+
+        section.active {
+            opacity: 1;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        p {
+            font-size: 1.3em;
+            font-family: 'Abel', sans-serif;
+        }
+
+        h3 {
+            font-size: 2em;
+            font-family: AlegreyaSC Regular;
+        }
+
+        img {
+            width: 70%;
+            display: block;
+            margin: auto;
+        }
+
+        #logo {
+            width: 30%;
+            display: block;
+            margin: auto;
+            margin-top: 40px;
+        }
+
+        @font-face {
+            font-family: AlegreyaSC Regular;
+            src: url('AlegreyaSC-regular.otf');
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.5em;
+            text-align: center;
+            line-height: 10px;
+        }
+
+        .marker {
+            display: block;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 0;
+        }
+    </style>
+
+
+    <div id='map'></div>
+    <div id='features'>
+        <section id='vikings' class='active'>
+            <img src="https://i0.wp.com/thefairytaletraveler.com/wp-content/uploads/2016/02/vikings.logo_.png?w=800" alt="Vikings logo">
+            <p>Vikings er en canadisk tv-serie, der er inspireret af vikingehelten Ragnar Lothbrok som var den første viking til at sejle udenfor Skandinavien for at udforske og plyndre. Serien skildrer Ragnars rejser til bl.a. England og Frankrig på jagt efter viden, rigdom og berømmelse. Serien foregår i det 9. århundrede. </p>
+        </section>
+        <section id='kattegat'>
+            <h3>Kattegat</h3>
+            <p>Efter at have overtaget magten fra Earl Haraldson flytter Ragner Lothbrok og hans familie til Kattegat. Kattegat bliver hurtigt det sted Ragnar styrer sit rige fra, og som Ragner løbende tager på togter fra. <br>I takt med at Ragnar udforsker Europa bliver Kattegat mere og mere velhavende og anerkendt som en indflydelsesrig handelsby for vikinger på vej hjem fra togt i England og Frankrig. </p>
+            <img src="Images/home.jpg" alt="Kattegat">
+        </section>
+        <section id='lindisfarne'>
+            <h3>Lindisfarne</h3>
+            <p>Lindisfarne er en lille ø ud for Englands kyst, tæt ved Skotland. Øen var kendt som et helligt sted for kristne, da der blandt andet lå et kloster på øen, samt at det var centrum for kristeningen af Nordengland. <br>Øen var det første sted vikingerne angreb England, hvor de plyndrede klosteret, samt bortførte flere munke, bl.a. Athelstan som senere i løbet af serien bliver Ragner Lothbroks højre hånd. </p>
+        <img src="Images/lindisfarne.jpg" alt="Lindisfarne">
+        </section>
+        <section id='wessex'>
+            <h3>Wessex</h3>
+            <p>Wessex er det stærkeste kongerige i England på daværende tidspunkt og regeres af kong Ecbert. Wessex grænser op til Mercia og Themes floden. Efter kong Ecberts død, overtog hans søn Athelstan tronen. <br>Den største by i Wessex er Winchester, som Ragnar Lothbrok plyndrer kort efter sin ankomst til England. </p>
+            <img src="Images/wessex.jpg" alt="Wessex">
+        </section>
+        <section id='mercia'>
+            <h3>Marcia</h3>
+            <p>Mercia er et kongerige i England. Tidligere var det, det stærkeste kongerige i England, men efter dronning Kwenthrith ville overtage tronen efter hendes faders død, opstod der borgerkrig som svækkede kongeriget. <br> Mercia blev aldrig angrebet af Ragnar Lothbrok, men efter hans død angreb vikingerne flere gange. </p>
+            <img src="Images/mercia.jpg" alt="Mercia">
+        </section>
+        <section id='paris'>
+            <h3>Paris</h3>
+            <p>Paris er hovedstaden i Frankrig og under kontrol af kejser Charles. Det er en af de største byer i Europa på daværende tidspunkt, og byen er næsten umulig at angribe da den er omgivet af mure, og ligger i Seine floden. <br> Ragnar Lothbrok og hans vikinger forsøger dog at plyndre byen, og efter flere forsøg lykkedes det dem. </p>
+            <img src="Images/paris.jpg" alt="Paris">
+        </section>
+        <section id='northumbria'>
+            <h3>Northumbria</h3>
+            <p>Northumbria er styret af kong Aella. Øen Lindisfarne er en del af Northumbria, og efter angrebet på øen, lavede kong Aella en aftale med Ragnar Lothbrok hvilket gav vikingerne områder til at slå sig ned og starte et landbrug. <br> Efter Ragnar blev taget til fange blev han bragt til Northumbria hvor Kong Aella henrettede ham. </p>
+            <img src="Images/Northumbria.jpg" alt="Northumbria">
+        </section>
+        <section id='paris'>
+            <img src="https://i0.wp.com/thefairytaletraveler.com/wp-content/uploads/2016/02/vikings.logo_.png?w=800" alt="Vikings logo" id="logo">
+
+            <footer> Simon Birkjær Jensen <br> @2018
+            </footer>
+        </section>
+    </div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic2ltb25iaXJramFlciIsImEiOiJjamZpM2ZnMXE1cnY5Mnlwbnd5aXc4YzZqIn0.vGM53C5yaLlQTZ4LShvRAw';
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/simonbirkjaer/cjfkw8qnqgyvh2snsh4m8h8c1',
+            center: [9.313544, 56.454068],
+            zoom: 5,
+            bearing: 27,
+            pitch: 45,
+        });
+
+        var chapters = {
+            'vikings': {
+                bearing: 27,
+                center: [9.313544, 56.454068],
+                zoom: 7,
+                pitch: 20,
+            },
+            'kattegat': {
+                duration: 6000,
+                center: [8.774338, 55.326842],
+                bearing: 150,
+                zoom: 10,
+                pitch: 0,
+            },
+            'lindisfarne': {
+                bearing: 90,
+                center: [-1.800881, 55.680817],
+                zoom: 12,
+                speed: 0.6,
+                pitch: 40,
+            },
+            'wessex': {
+                bearing: 90,
+                center: [-2.202933, 51.271078],
+                zoom: 8,
+            },
+            'mercia': {
+                bearing: 45,
+                center: [-1.643144, 52.415008],
+                zoom: 7.5,
+                pitch: 20,
+                speed: 0.5,
+            },
+            'paris': {
+                bearing: 180,
+                center: [2.346483, 48.854749],
+                zoom: 15,
+            },
+            'northumbria': {
+                bearing: 180,
+                center: [-0.725851, 54.036311],
+                zoom: 8,
+            }
+        };
+
+        // On every scroll event, check which element is on screen
+        window.onscroll = function() {
+            var chapterNames = Object.keys(chapters);
+            for (var i = 0; i < chapterNames.length; i++) {
+                var chapterName = chapterNames[i];
+                if (isElementOnScreen(chapterName)) {
+                    setActiveChapter(chapterName);
+                    break;
+                }
+            }
+        };
+
+        var activeChapterName = 'kattegat';
+
+        function setActiveChapter(chapterName) {
+            if (chapterName === activeChapterName) return;
+
+            map.flyTo(chapters[chapterName]);
+
+            document.getElementById(chapterName).setAttribute('class', 'active');
+            document.getElementById(activeChapterName).setAttribute('class', '');
+
+            activeChapterName = chapterName;
+        }
+
+        function isElementOnScreen(id) {
+            var element = document.getElementById(id);
+            var bounds = element.getBoundingClientRect();
+            return bounds.top < window.innerHeight && bounds.bottom > 40;
+        }
+    </script>
+
+    <script>
+        var marker = new mapboxgl.Marker()
+            .setLngLat([8.675978, 55.339797])
+            .addTo(map);
+        
+        var marker = new mapboxgl.Marker()
+            .setLngLat([-1.800881, 55.680817])
+            .addTo(map);
+        
+        var marker = new mapboxgl.Marker()
+            .setLngLat([-2.202933, 51.271078])
+            .addTo(map);
+        
+        var marker = new mapboxgl.Marker()
+            .setLngLat([-1.643144, 52.415008])
+            .addTo(map);
+        
+        var marker = new mapboxgl.Marker()
+            .setLngLat([2.346483, 48.854749])
+            .addTo(map);
+        
+        var marker = new mapboxgl.Marker()
+            .setLngLat([-0.725851, 54.036311])
+            .addTo(map);
+    </script>
+</body>
+
+</html>
